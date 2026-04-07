@@ -101,9 +101,14 @@ class GuessInput extends StatelessWidget {
   }
 }
 
-class GamePage extends StatelessWidget {
+class GamePage extends StatefulWidget {
   GamePage({super.key});
 
+  @override
+  State<GamePage> createState() => _GamePageState();
+}
+
+class _GamePageState extends State<GamePage> {
   final Game _game = Game();
 
   @override
@@ -123,8 +128,9 @@ class GamePage extends StatelessWidget {
             ),
           GuessInput(
             onSubmitGuess: (String guess) {
-              // TODO: handle guess with setState (next step)
-              print(guess);
+              setState(() {
+                _game.guess(guess);
+              });
             },
           ),
         ],
